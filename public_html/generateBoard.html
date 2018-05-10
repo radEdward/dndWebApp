@@ -27,7 +27,7 @@
             <div id = "welcomeBox">
 
                 <table id = "welcomeBoxContent">
-                <tr> <td> <input type="file" id="myFile" onclick = "mapSwitch()"> </td> </tr>
+                <tr> <td> <input type="file" id="myFile" onchange = "mapSwitch()"> </td> </tr>
                 <tr> <td> <button id = "loadPage" onclick = "generateBoard()">Load Map</button> </td> </tr>
                 <tr> <td> <button id = "questions" onclick = "howTo(0)"> ??? </button> </td> </tr>
                 <tr> <td> <a href="https://www.Vecteezy.com">Free Vectors by Vecteezy</a> </td> </tr>
@@ -37,7 +37,7 @@
 
 
 
-      <div id = "iconsGoHere" onclick = "mapControl()" onmouseup = "mouseUpFunctions()" onmousedown = "mouseDownFunctions()" ondblclick = "dblClickFunctions()">
+      <div id = "iconsGoHere" onclick = "mapControl()" onmouseup = "mouseUpFunctions()" onmousedown = "mouseDownFunctions()" ondblclick = "dblClickFunctions()" onmousemove = "mouseMoveFunctions()">
           
                 <img id = "map" src = "">
           
@@ -80,7 +80,7 @@
             <div id = "mapControlBox">
 
                 <button id = "howTo" onclick = "howTo(3)"><b>?</b></button>
-
+                
                 <table id = "mapControlBoxChoices">
 
                     <tr><td> <button id = "markMap" onclick = "markMap()"> Mark </button> </td></tr>

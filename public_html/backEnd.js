@@ -118,6 +118,23 @@ function mouseDownFunctions() {
             measureMapSwitch++;
             
             document.getElementById("measureMap").style.background = "lightgray";
+            
+            var measureDisplay = document.createElement("div");
+            document.getElementById("iconsGoHere").appendChild(measureDisplay);
+            measureDisplay.setAttribute("id", idNo + "measureDisplay");
+            measureDisplay.style.position = "absolute";
+            measureDisplay.style.width = "30px";
+            measureDisplay.style.height = "25px";
+            measureDisplay.style.top = fromY - 25 + "px";
+            measureDisplay.style.left = fromX + "px";
+            measureDisplay.style.background = "white";
+            measureDisplay.style.fontWeight = "bold";
+            
+            measureDisplay.onmouseup = function() {
+                
+                document.getElementById("iconsGoHere").removeChild(this.id);
+                
+            };
         
     }
     
@@ -153,16 +170,26 @@ function dblClickFunctions() {
     }
     
 }
+function mouseMoveFunctions() {
+    
+    if (measureMapSwitch === 2) {
+            
+            toX = event.pageX;
+            toY = event.pageY;
+            
+            measureDisplay.style.top = toY - 25 + "px";
+            measureDisplay.style.left = toX + "px";
+            
+            document.getElementById("measureDisplay").innerHTML = Math.round(getDistance(fromX, toX, fromY, toY));
+        
+    }
+    
+}
 function mouseUpFunctions() {
     
     if (measureMapSwitch === 2) {
         
             measureMap();
-        
-            toX = event.pageX;
-            toY = event.pageY;
-            
-            alert( Math.round(getDistance(fromX, toX, fromY, toY)) + " feet away." );
         
     }
     
