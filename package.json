@@ -1,0 +1,8 @@
+{
+    "name": "DnDBoard",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "sp1117c",
+    "contributors": [],
+    "dependencies": {}
+}

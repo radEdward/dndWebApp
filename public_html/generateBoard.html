@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>ezvtt</title>
+
+    <link href="generateBoardLayout.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body onload = "welcomeGreeting()">
+
+
+
+            <div id = "welcomeBanner">
+                    
+                <table id = "welcomeBannerContent">
+                    <tr><td> <img src = "https://image.ibb.co/eVGdTy/home_Screend20.png" alt = "oops..." id = "d20"> </td></tr>
+                    <tr><td> <div id = "welcomeText"></div> </td></tr>
+                </table>
+                
+            </div>
+      
+      
+
+            <div id = "welcomeBox">
+
+                <table id = "welcomeBoxContent">
+                <tr> <td> <input type="file" id="myFile" onclick = "mapSwitch()"> </td> </tr>
+                <tr> <td> <button id = "loadPage" onclick = "generateBoard()">Load Map</button> </td> </tr>
+                <tr> <td> <button id = "questions" onclick = "howTo(0)"> ??? </button> </td> </tr>
+                <tr> <td> <a href="https://www.Vecteezy.com">Free Vectors by Vecteezy</a> </td> </tr>
+                </table>
+
+            </div>
+
+
+
+      <div id = "iconsGoHere" onclick = "mapControl()" onmouseup = "mouseUpFunctions()" onmousedown = "mouseDownFunctions()" ondblclick = "dblClickFunctions()">
+          
+                <img id = "map" src = "">
+          
+      </div>
+            
+            
+            
+            <table id = "menuBar">
+                <tr>
+                    <td> <button id = "iconControls" onclick = "generateIconMenu()"> Icon Functions </button> </td>
+                    <td> <button id = "mapControls" onclick = "generateMapMenu()"> Map Functions </button> </td>
+                    <td> <button id = "monsterScreen" onclick = "howTo(1)"> ??? </button> </td>
+                </tr>
+            </table>
+            
+            
+
+            <div id = "iconControlBox"> 
+
+                <button id = "howTo" onclick = "howTo(2)"><b>?</b></button>
+
+                <table id = "iconControlBoxChoices">
+                <tr> <td> <button id = "placement" onclick = "placeIcon()"> Place Icon </button> </td> 
+                     <td id = "iconMenuButton"> <button id = "generateIconMenu" onclick = "generateIconChoices()"> Icon Menu </button> </td> </tr>
+                <tr><td> <button id = "remove" onclick = "removeIcon()"> Remove Icon </button> </td>
+                     <td rowspan = "4" id = "iconPreview"> <img src ="" id ="preview" alt = ""> </td> </tr>
+                <tr><td> <button id = "move" onclick = "moveIcon()"> Move Icon </button> </td></tr>
+                <tr id = "rotateButtons">
+                    <td> <button id = "rotate" onclick = "rotateIcon()"> Rotate Icon </button> </td></tr>
+                <tr id = "size"><td> <select id = "sizeIcon"> <option>Size:</option>
+                                                              <option>Normal</option> 
+                                                              <option>Large</option>
+                                                              <option>Huge</option> </select> </td></tr>
+                </table>
+
+            </div>
+
+
+
+            <div id = "mapControlBox">
+
+                <button id = "howTo" onclick = "howTo(3)"><b>?</b></button>
+
+                <table id = "mapControlBoxChoices">
+
+                    <tr><td> <button id = "markMap" onclick = "markMap()"> Mark </button> </td></tr>
+                    <tr><td> <button id = "measureMap" onclick = "measureMap()"> Measure </button> </td></tr>
+                    <tr><td> <button id = "zoomMap" onclick = "zoomMap()"> Zoom Out </button> </td></tr>
+                    <tr><td> <button id = "hideMap" onclick = "hideMap()"> Hide </button> </td></tr>
+                    <tr><td> <button id = "showMap" onclick = "showMap()"> Show </button> </td></tr>
+
+                </table>
+
+            </div>
+
+
+
+            <div id = "iconMenu">
+
+                <table id = "tabs">
+                <tr><td> <select id = "tabChoices" onchange = "showIcons()">
+                        <option value = "0"> Player Characters </option>
+                        <option value = "1"> More Player Characters </option>
+                        <option value = "2"> Goblins and Kobolds </option>
+                        <option value = "3"> Dwarves </option>
+                        <option value = "4"> Guards and Nobles </option>
+                        <option value = "5"> Dungeon Master Essentials </option>
+                        <option value = "6"> More Dungeon Master Essentials </option>
+                        <option value = "7"> Underdark </option>
+                        <option value = "8"> Orcs and Trolls </option>
+                        <option value = "9"> Werecreatures </option>
+                        <option value = "10"> Familiars </option>
+                        <option value = "11"> Samurai </option>
+                        <option value = "12"> Caverns </option>
+                        <option value = "13"> Campsite </option>
+                        <option value = "14"> Undead </option>
+                        <option value = "15"> Pirates </option>
+                        <option value = "16"> Hairy Orcs/Goblins </option>
+                        </select> </td></tr>
+                </table>
+
+            <table id = "minisGoHere">
+
+
+
+            </table>
+                
+            </div>
+
+
+
+            <script src="backEnd.js"></script>
+
+
+
+  </body>
+</html>
