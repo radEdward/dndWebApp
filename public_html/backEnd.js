@@ -121,20 +121,12 @@ function mouseDownFunctions() {
             
             var measureDisplay = document.createElement("div");
             document.getElementById("iconsGoHere").appendChild(measureDisplay);
-            measureDisplay.setAttribute("id", idNo + "measureDisplay");
+            measureDisplay.setAttribute("id", "measureDisplay");
             measureDisplay.style.position = "absolute";
             measureDisplay.style.width = "30px";
             measureDisplay.style.height = "25px";
-            measureDisplay.style.top = fromY - 25 + "px";
-            measureDisplay.style.left = fromX + "px";
             measureDisplay.style.background = "white";
             measureDisplay.style.fontWeight = "bold";
-            
-            measureDisplay.onmouseup = function() {
-                
-                document.getElementById("iconsGoHere").removeChild(this.id);
-                
-            };
         
     }
     
@@ -177,10 +169,10 @@ function mouseMoveFunctions() {
             toX = event.pageX;
             toY = event.pageY;
             
-            measureDisplay.style.top = toY - 25 + "px";
-            measureDisplay.style.left = toX + "px";
+            document.getElementById("measureDisplay").style.top = toY - 25 + "px";
+            document.getElementById("measureDisplay").style.left = toX - 3 + "px";
             
-            document.getElementById("measureDisplay").innerHTML = Math.round(getDistance(fromX, toX, fromY, toY));
+            document.getElementById("measureDisplay").innerHTML = Math.round(getDistance(fromX, toX, fromY, toY)) + "ft";
         
     }
     
