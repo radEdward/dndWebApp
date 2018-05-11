@@ -6,6 +6,7 @@
     <title>ezvtt</title>
 
     <link href="generateBoardLayout.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous">
 
   </head>
 
@@ -37,7 +38,7 @@
 
 
 
-      <div id = "iconsGoHere" onclick = "mapControl()" onmouseup = "mouseUpFunctions()" onmousedown = "mouseDownFunctions()" ondblclick = "dblClickFunctions()" onmousemove = "mouseMoveFunctions()">
+      <div id = "iconsGoHere" onmouseup = "mapControl()" onmousedown = "mouseDownFunctions()" onmousemove = "mouseMoveFunctions()">
           
                 <img id = "map" src = "">
           
@@ -47,51 +48,16 @@
             
             <table id = "menuBar">
                 <tr>
-                    <td> <button id = "iconControls" onclick = "generateIconMenu()"> Icon Functions </button> </td>
-                    <td> <button id = "mapControls" onclick = "generateMapMenu()"> Map Functions </button> </td>
-                    <td> <button id = "monsterScreen" onclick = "howTo(1)"> ??? </button> </td>
+                    <td> <button id = "generateIconMenu" onclick = "generateIconChoices()"> <i class="fab fa-d-and-d"></i> </button> </td>
+                    <td> <button id = "remove" onclick = "removeIcon()"> <i class="fa fa-trash"></i> </button> </td>
+                    <td> <button id = "rotate" onclick = "rotateIcon()"> <i class="fas fa-sync"></i> </button> </td>
+                    <td> <button id = "measureMap" onclick = "measureMap()"> <i class="fas fa-ruler-combined"></i> </button> </td>
+                    <td> <button id = "markMap" onclick = "markMap()"> <i class="fas fa-exclamation"></i> </button> </td>
+                    <td> <button id = "zoomMap" onclick = "zoomMap()"> <i class="fas fa-search-minus"></i> </button> </td>
+                    <td> <button id = "hideMap" onclick = "hideMap()"> <i class="far fa-eye-slash"></i> </button> </td>
+                    <td> <button id = "monsterScreen" onclick = "howTo(1)"> <i class="fas fa-info-circle"></i> </button> </td>
                 </tr>
             </table>
-            
-            
-
-            <div id = "iconControlBox"> 
-
-                <button id = "howTo" onclick = "howTo(2)"><b>?</b></button>
-
-                <table id = "iconControlBoxChoices">
-                <tr> <td> <button id = "placement" onclick = "placeIcon()"> Place Icon </button> </td> 
-                     <td id = "iconMenuButton"> <button id = "generateIconMenu" onclick = "generateIconChoices()"> Icon Menu </button> </td> </tr>
-                <tr><td> <button id = "remove" onclick = "removeIcon()"> Remove Icon </button> </td>
-                     <td rowspan = "4" id = "iconPreview"> <img src ="" id ="preview" alt = ""> </td> </tr>
-                <tr><td> <button id = "move" onclick = "moveIcon()"> Move Icon </button> </td></tr>
-                <tr id = "rotateButtons">
-                    <td> <button id = "rotate" onclick = "rotateIcon()"> Rotate Icon </button> </td></tr>
-                <tr id = "size"><td> <select id = "sizeIcon"> <option>Size:</option>
-                                                              <option>Normal</option> 
-                                                              <option>Large</option>
-                                                              <option>Huge</option> </select> </td></tr>
-                </table>
-
-            </div>
-
-
-
-            <div id = "mapControlBox">
-
-                <button id = "howTo" onclick = "howTo(3)"><b>?</b></button>
-                
-                <table id = "mapControlBoxChoices">
-
-                    <tr><td> <button id = "markMap" onclick = "markMap()"> Mark </button> </td></tr>
-                    <tr><td> <button id = "measureMap" onclick = "measureMap()"> Measure </button> </td></tr>
-                    <tr><td> <button id = "zoomMap" onclick = "zoomMap()"> Zoom Out </button> </td></tr>
-                    <tr><td> <button id = "hideMap" onclick = "hideMap()"> Hide </button> </td></tr>
-                    <tr><td> <button id = "showMap" onclick = "showMap()"> Show </button> </td></tr>
-
-                </table>
-
-            </div>
 
 
 
@@ -99,6 +65,7 @@
 
                 <table id = "tabs">
                 <tr><td> <select id = "tabChoices" onchange = "showIcons()">
+                        <option> Icon Categories </option>
                         <option value = "0"> Player Characters </option>
                         <option value = "1"> More Player Characters </option>
                         <option value = "2"> Goblins and Kobolds </option>
@@ -116,7 +83,16 @@
                         <option value = "14"> Undead </option>
                         <option value = "15"> Pirates </option>
                         <option value = "16"> Hairy Orcs/Goblins </option>
-                        </select> </td></tr>
+                        </select> 
+                    
+                        <select id = "sizeIcon"> 
+                            <option>Size:</option>
+                            <option>Normal</option> 
+                            <option>Large</option>
+                            <option>Huge</option>
+                        </select>
+                        
+                </td></tr>
                 </table>
 
             <table id = "minisGoHere">
