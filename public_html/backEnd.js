@@ -397,7 +397,7 @@ function howTo() {
                                     document.getElementById("helpText").innerHTML = "Let's go through the controls, and get your adventure started! Click Next to cycle through explanations. <br><br>Fun fact: When a button is red, it's active and will perform its assigned function.";
                                 }
                                 
-        if (whichMessage > 0) { document.getElementById("info").style.background = "lightgray"; document.getElementById("helpScreen").style.display = "none"; whichMessage = 0; document.getElementById("helpText").innerHTML = ""; helpActive = 0; }
+        if (whichMessage > 0) { document.getElementById("info").style.background = "lightgray"; document.getElementById("helpScreen").style.display = "none"; whichMessage = 0; document.getElementById("helpText").innerHTML = ""; pointerMove = 18; }
 
 }
 function nextHelp() { 
