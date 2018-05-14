@@ -1,15 +1,13 @@
-var menuBarSwitch = 0;
-var mapWindowSwitch = 0;
-var iconWindowSwitch = 0;
 var iconMenuSwitch = 0;
 var placeImageSwitch = 0; var removeImageSwitch = 0; var moveImageSwitch = 0; var rotateImageSwitch = 0;
 var markMapSwitch = 0; var measureMapSwitch = 0; var hideMapSwitch = 0; var zoomMapSwitch = 0; var showMapSwitch = 0;
 var backGroundImage;
+var whichMessage = 0; var pointerMove = 18;
 
 var idNo = 0; var hideIdNo = 0;
 var colorPicker = 0;
 
-var rotation = 0; var zoom = 100;
+var zoom = 100;
 
 var gamePiece; var imageToSet;
 
@@ -39,8 +37,6 @@ function mapControl() {
             document.getElementById("sizeIcon").value = "Size:";
 
     };
-    
-    
     
     if (zoomMapSwitch === 1) {
         
@@ -81,10 +77,28 @@ function iconControl() {
     gamePiece.onclick = function() {
         
             if (removeImageSwitch === 1) { document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id)); }
-            if (rotateImageSwitch === 1) { rotation += 90;
-                                          document.getElementById(this.id).style.transform = "rotate(" + rotation + "deg)";
-                                          if (rotation === 360) { rotation = 0; } }
 
+    };
+    
+    gamePiece.onmousemove = function() {
+        
+            if (rotateImageSwitch === 1) {
+                
+                var ax = 0, ay = 0, bx = 0, by = 0, cx = 0, cy = 0, a = 0, b = 0, c = 0;
+
+                ax = parseInt(document.getElementById(this.id).style.left, 10) + parseInt(document.getElementById(this.id).getAttribute("width"), 10)/2; ay = parseInt(document.getElementById(this.id).style.top, 10) + parseInt(document.getElementById(this.id).getAttribute("height"), 10)/2;
+                bx = parseInt(document.getElementById(this.id).style.left, 10) + parseInt(document.getElementById(this.id).getAttribute("width"), 10)/2; by = parseInt(document.getElementById(this.id).style.top, 10) + parseInt(document.getElementById(this.id).getAttribute("height"), 10);
+                cx = event.pageX; cy = event.pageY;
+
+                a = getDistance(bx*20, cx*20, by*20, cy*20);
+                b = getDistance(ax*20, cx*20, ay*20, cy*20);
+                c = getDistance(bx*20, ax*20, by*20, ay*20);
+
+                if (bx - cx < 0) { document.getElementById(this.id).style.transform = "rotate(" + -1*Math.acos((b*b + c*c - a*a) / (2.0*b*c)) * (180 / Math.PI) + "deg)"; }
+                if (bx - cx > 0) { document.getElementById(this.id).style.transform = "rotate(" + Math.acos((b*b + c*c - a*a) / (2.0*b*c)) * (180 / Math.PI) + "deg)"; }
+                
+            }
+        
     };
     
     gamePiece.ondblclick = function() {
@@ -125,6 +139,12 @@ function mouseDownFunctions() {
             measureDisplay.style.height = "25px";
             measureDisplay.style.background = "white";
             measureDisplay.style.fontWeight = "bold";
+            
+            measureDisplay.onmouseup = function() {
+                
+                document.getElementById("iconsGoHere").removeChild(measureDisplay);
+                
+            };
         
     }
     
@@ -182,7 +202,7 @@ function mouseMoveFunctions() {
             toY = event.pageY;
             
             document.getElementById("measureDisplay").style.top = toY - 25 + "px";
-            document.getElementById("measureDisplay").style.left = toX - 3 + "px";
+            document.getElementById("measureDisplay").style.left = toX - 5 + "px";
             
             document.getElementById("measureDisplay").innerHTML = Math.round(getDistance(fromX, toX, fromY, toY)) + "ft";
         
@@ -240,8 +260,10 @@ function generateBoard() {
     
     backGroundImage = document.createElement("IMG");
     
-    if (idNo === 0) { backGroundImage.src = "https://image.ibb.co/gUivAd/default_Map.jpg"; }
-    if (idNo > 0) { backGroundImage.src = document.getElementById("myFile").files[0].name; }
+//    if (idNo === 0) { backGroundImage.src = "https://image.ibb.co/gUivAd/default_Map.jpg"; }
+//    if (idNo > 0) { backGroundImage.src = document.getElementById("myFile").files[0].name; }
+
+    backGroundImage.src = document.getElementById("myFile").value;
     
     document.getElementById("map").src = backGroundImage.src;
     document.getElementById("map").setAttribute("draggable", false);
@@ -296,15 +318,6 @@ function showIcons() {
             img.setAttribute("draggable", false);
 
             img.setAttribute("id", "dndPicsPng2/" + folderNames[chosenFolder] + "/" + foldersArray[chosenFolder][looper]);
-            
-//            img.onclick = function() {
-//                
-//                    imageToSet = this.id;
-//                                      
-//                    if (placeImageSwitch === 1) { document.getElementById("preview").setAttribute("src", document.getElementById(this.id).id);
-//                                                  document.getElementById("preview").style.width = "100px";
-//                                                  document.getElementById("preview").style.height = "100px"; }
-//            };
                                       
             img.onmousedown = function() {
                 
@@ -370,15 +383,44 @@ function showIcons2() {
 
 
 
-function howTo(index) {
+function welcome() {
     
-    var howToMessages = ["Select an image file to use as a map. \nPress 'Load Map'. \n??? \nProfit. \n\nFun fact: Distance is calculated considering 100 pixels to be five feet, so scale your map based on that. If no map file is selected, a basic, default map is used.", 
-                           "You should see your map displayed! There are buttons in the top corner called Icon Functions and Map Functions. Each one pulls up a control window in the bottom left corner.  \n\nFun fact: when a button is active, its color changes to red.",
-                           "Icon Menu - This will pull up a menu for available icons. \n\nPlace Icon - While active, choose an icon from the menu to place it on the map. Selected icons will display under the Icon Menu button, and will be placed wherever you click on the map. Double click an icon to produce a color marker for duplicate icons. Double click again to cycle through different colors. \n\nRemove Icon - While active, clicking on icons will remove them. \n\nMove Icon - While active, drag and drop icons to move them. \n\nRotate Icon - While active, click an icon to rotate it clockwise. \n\nSize - A drop down menu to select icon size. 'Normal Size' is 100px by 100px.",
-                           "Mark - While active, a red circle will mark whatever location selected. \n\nMeasure - While active, click, drag and release the mouse to measure distance from the clicked point to the released point. Normal size icons are considered 5ft by 5ft, and this is how distance is calculated. \n\nZoom Out - While active, click anywhere on the game map to zoom out from it. \n\nHide - While active, double-click to place a small gray square. When hide is active, the squares can be moved to any desired location. When the button is inactive, the gray squares can be resized by dragging the bottom right corner. \n\nShow - While active, click any gray hiding square to remove it."];
+    document.getElementById("welcomeHelp").style.display = "block";
     
-    alert(howToMessages[index]);
+}
+function howTo() {
+
+        if (whichMessage === 0) { 
+                                    document.getElementById("info").style.background = "lightsalmon"; document.getElementById("helpScreen").style.display = "block"; helpActive = 1;
+                                    document.getElementById("helpText").innerHTML = "Let's go through the controls, and get your adventure started! Click Next to cycle through explanations. <br><br>Fun fact: When a button is red, it's active and will perform its assigned function.";
+                                }
+                                
+        if (whichMessage > 0) { document.getElementById("info").style.background = "lightgray"; document.getElementById("helpScreen").style.display = "none"; whichMessage = 0; document.getElementById("helpText").innerHTML = ""; helpActive = 0; }
+
+}
+function nextHelp() { 
     
+        if (whichMessage === 0) { document.getElementById("pointer").style.left = pointerMove + "px"; document.getElementById("pointer").style.display = "block"; }
+        
+        if (whichMessage === 7) { document.getElementById("pointer").style.display = "none";  }
+        
+        if (whichMessage === 8) { howTo(); pointerMove = 18; return; }
+        
+        if (whichMessage > 0) { pointerMove += 55; document.getElementById("pointer").style.left = pointerMove + "px"; }
+
+        var howToMessages = ["Click here to pull up the icon menu. Click again to make it go away. <br><br>Use the drop down menus to pick which kind of icon to choose from, and set their size. <br><br>Drag and drop an icon you like wherever you want it on the board. <br><br>Once placed, icons can be dragged and moved anywhere on the board. Double clicking icons cycles through color markers to keep track of duplicates.", 
+                             "Click here to activate the delete function. <br><br> While active, click on an icon to make it go away.", 
+                             "Click here to activate the rotate function. <br><br> While active, hover the mouse over an icon to rotate it to whatever direction desired. Default is icon facing down.", 
+                             "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
+                             "Click here to activate the mark function. <br><br> While active, click anywhere on the map to place a large red X on a location you desire to mark.", 
+                             "Click here to activate the zoom-out function. <br><br> While active, the mouse cursor should change to a magnifying glass. Click anywhere on the board to zoom-out and get a better look at the overall map. <br><br> Click the button again to deactivate and reset the zoom level to normal.", 
+                             "Click here to activate the hide map function. <br><br> While active, click and drag the cursor down and to the right to produce gray squares that can hide your map from your players. <br><br> Double click a gray square to make it go away.",
+                             "Game on! Any questions or concerns can be sent to me at: virtualTableTop@outlook.com"];
+
+        document.getElementById("helpText").innerHTML = howToMessages[whichMessage];
+        
+        whichMessage++;
+
 }
 
 
@@ -522,3 +564,11 @@ function welcomeGreeting() {
     document.getElementById("welcomeText").innerHTML = greetings[seed];
     
 }
+
+
+
+window.onclick = function(event) {
+    if (event.target !== document.getElementById("questions")) {
+        document.getElementById("welcomeHelp").style.display = "none";
+    }
+};
