@@ -190,6 +190,8 @@ function mouseDownFunctions() {
                 hideMap();
                 
             };
+            
+            moveElement(hideSquare);
         
     }
     
@@ -414,7 +416,7 @@ function nextHelp() {
                              "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
                              "Click here to activate the mark function. <br><br> While active, click anywhere on the map to place a large red X on a location you desire to mark.", 
                              "Click here to activate the zoom-out function. <br><br> While active, the mouse cursor should change to a magnifying glass. Click anywhere on the board to zoom-out and get a better look at the overall map. <br><br> Click the button again to deactivate and reset the zoom level to normal.", 
-                             "Click here to activate the hide map function. <br><br> While active, click and drag the cursor down and to the right to produce gray squares that can hide your map from your players. <br><br> Double click a gray square to make it go away.",
+                             "Click here to activate the hide map function. <br><br> While active, click and drag the cursor down and to the right to produce gray squares that can hide your map from your players. <br><br> Gray squares are movable, and double clicking them removes them.",
                              "Game on! Any questions or concerns can be sent to me at: virtualTableTop@outlook.com"];
 
         document.getElementById("helpText").innerHTML = howToMessages[whichMessage];
