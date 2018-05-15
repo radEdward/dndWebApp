@@ -9,7 +9,7 @@ var colorPicker = 0;
 
 var zoom = 100;
 
-var gamePiece; var imageToSet;
+var gamePiece; var gamePieces = []; var imageToSet;
 
 var x; var y;
 
@@ -22,9 +22,11 @@ function mapControl() {
     x = event.pageX;
     y = event.pageY;
     
-    iconControl();
+//    iconControl();
     
     if (placeImageSwitch === 1) {
+
+            iconControl();
 
             document.getElementById("iconsGoHere").appendChild(gamePiece);
 
@@ -35,6 +37,8 @@ function mapControl() {
             if (markMapSwitch === 1) { markMap(); placeImageSwitch = 0; }
             
             document.getElementById("sizeIcon").value = "Size:";
+            
+            alert(gamePieces.length);
 
     };
     
@@ -44,6 +48,12 @@ function mapControl() {
         
             document.getElementById("map").style.zoom = zoom + "%";
             document.getElementById("iconsGoHere").style.zoom = zoom + "%";
+            
+            for (i = 0; i < gamePieces.length; i++) {
+                
+                document.getElementById(gamePieces[i]).style.zoom = zoom + "%";
+                
+            }
         
     }
     
@@ -62,6 +72,7 @@ function iconControl() {
     
     gamePiece = document.createElement("IMG");
     gamePiece.setAttribute("id", idNo);
+    gamePieces.push(gamePiece.id);
     
             idNo++;
             
@@ -517,6 +528,7 @@ function markMap() {
                                    markMapSwitch++; }
     
     if (markMapSwitch === 0) { document.getElementById("markMap").style.background = "lightsalmon";
+                                   placeImageSwitch = 1;
                                    markMapSwitch++; }
     
     if (markMapSwitch === 2) { markMapSwitch = 0; }
@@ -537,7 +549,11 @@ function zoomMap() {
                                    zoom = 100;
                                    document.getElementById("iconsGoHere").style.cursor = "";
                                    document.getElementById("map").style.zoom = "100%";
-                                   document.getElementById("iconsGoHere").style.zoom = "100%"; }
+                                   document.getElementById("iconsGoHere").style.zoom = "100%";
+                               
+                                   for (i = 0; i < gamePieces.length; i++) { document.getElementById(gamePieces[i]).style.zoom = "100%"; }
+
+    }
     
 }
 function hideMap() {
