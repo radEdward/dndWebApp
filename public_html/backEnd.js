@@ -22,8 +22,6 @@ function mapControl() {
     x = event.pageX;
     y = event.pageY;
     
-//    iconControl();
-    
     if (placeImageSwitch === 1) {
 
             iconControl();
@@ -37,8 +35,6 @@ function mapControl() {
             if (markMapSwitch === 1) { markMap(); placeImageSwitch = 0; }
             
             document.getElementById("sizeIcon").value = "Size:";
-            
-            alert(gamePieces.length);
 
     };
     
