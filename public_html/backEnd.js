@@ -251,31 +251,53 @@ function moveElement(elmnt) {
 
 function mapSwitch() {
     
-    idNo++;
+        document.getElementById("menuBar").style.display = "block";
+        document.getElementById("welcomeBox").style.display = "none";
+        document.getElementById("welcomeBanner").style.display = "none";
+
+        backGroundImage = document.createElement("IMG");
+
+        var seed = Math.floor(4*Math.random());
+        var testMaps = ["defaultMap.jpg", "testMap1.png", "testMap2.png", "testMap3.jpg"];
+        
+        backGroundImage.src = testMaps[seed];
+        document.getElementById("map").src = testMaps[seed];
+
+        document.getElementById("map").setAttribute("draggable", false);
+
+        backGroundImage.onload = function() {
+
+            document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
+            document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
+
+        };
     
 }
-function generateBoard() {
+function generateBoard(input) {
     
-    document.getElementById("menuBar").style.display = "block";
-    document.getElementById("welcomeBox").style.display = "none";
-    document.getElementById("welcomeBanner").style.display = "none";
-    
-    backGroundImage = document.createElement("IMG");
-    
-//    if (idNo === 0) { backGroundImage.src = "https://image.ibb.co/gUivAd/default_Map.jpg"; }
-//    if (idNo > 0) { backGroundImage.src = document.getElementById("myFile").files[0].name; }
+        document.getElementById("menuBar").style.display = "block";
+        document.getElementById("welcomeBox").style.display = "none";
+        document.getElementById("welcomeBanner").style.display = "none";
 
-    backGroundImage.src = document.getElementById("myFile").value;
-    
-    document.getElementById("map").src = backGroundImage.src;
-    document.getElementById("map").setAttribute("draggable", false);
-    
-    backGroundImage.onload = function() {
-        
-        document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
-        document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
-        
-    };
+        backGroundImage = document.createElement("IMG");
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+
+            backGroundImage.src = e.target.result;
+            document.getElementById("map").src = e.target.result;
+
+        };
+        reader.readAsDataURL(input.files[0]);
+
+        document.getElementById("map").setAttribute("draggable", false);
+
+        backGroundImage.onload = function() {
+
+            document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
+            document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
+
+        };
     
 }
 

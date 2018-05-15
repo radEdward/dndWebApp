@@ -25,13 +25,8 @@
 
             <div id = "welcomeBox">
 
-<!--                <input type="file" id="myFile" onchange = "mapSwitch()">-->
-                <select id = "myFile"> 
-                            <option>testMap1.png</option>
-                            <option>testMap2.png</option> 
-                            <option>testMap3.jpg</option>
-                </select>
-                <button id = "loadPage" onclick = "generateBoard()">Load Map</button>
+                <input type="file" id="myFile" onchange = "generateBoard(this)">
+                <button id = "loadPage" onclick = "mapSwitch()">Random Test Map</button>
                 <button id = "questions" onclick = "welcome()"> First Time Visiting? </button>
                 <a href="https://www.Vecteezy.com">Free Vectors by Vecteezy</a>
 
