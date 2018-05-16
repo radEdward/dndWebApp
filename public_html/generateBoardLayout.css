@@ -11,6 +11,12 @@ body {
 }
 #map {
     position: absolute;
+    z-index: 0;
+}
+#hideLayer {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
 }
 
 
@@ -138,6 +144,7 @@ a {
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 0px 0px 5px 0px;
+    z-index: 2;
 }
 #menuBar tr, td {
     width: 52px;
@@ -177,6 +184,8 @@ a {
     border-radius: 0px 0px 0px 5px;
     
     background-color:rgba(0, 0, 0, 0.7);
+    
+    z-index: 2;
 }
 #tabChoices {
     background-color: lightgray;
@@ -223,6 +232,8 @@ a {
     color: white;
     text-align: center;
     font-weight: bold;
+    
+    z-index: 2;
 }
 #helpText {
     position: relative;

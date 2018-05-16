@@ -237,7 +237,7 @@ function moveElement(elmnt) {
           fromX = event.pageX;
           fromY = event.pageY;
           document.onmouseup = stopMovingElement;
-          document.onmousemove = mouseMoveOnElement;
+          if (measureMapSwitch !== 1) { document.onmousemove = mouseMoveOnElement; }
         }
 
         function mouseMoveOnElement() {
@@ -435,6 +435,8 @@ function nextHelp() {
     
         if (whichMessage === 0) { document.getElementById("pointer").style.left = pointerMove + "px"; document.getElementById("pointer").style.display = "block"; }
         
+        if (whichMessage === 1) {  }
+        
         if (whichMessage === 7) { document.getElementById("pointer").style.display = "none";  }
         
         if (whichMessage === 8) { howTo(); pointerMove = 18; return; }
@@ -444,7 +446,7 @@ function nextHelp() {
         var howToMessages = ["Click here to pull up the icon menu. Click again to make it go away. <br><br>Use the drop down menus to pick which kind of icon to choose from, and set their size. <br><br>Drag and drop an icon you like wherever you want it on the board. <br><br>Once placed, icons can be dragged and moved anywhere on the board. Double clicking icons cycles through color markers to keep track of duplicates.", 
                              "Click here to activate the delete function. <br><br> While active, click on an icon to make it go away.", 
                              "Click here to activate the rotate function. <br><br> While active, hover the mouse over an icon to rotate it to whatever direction desired. Default is icon facing down.", 
-                             "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
+                             "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. Click the box to make it go away. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
                              "Click here to activate the mark function. <br><br> While active, click anywhere on the map to place a large red X on a location you desire to mark.", 
                              "Click here to activate the zoom-out function. <br><br> While active, the mouse cursor should change to a magnifying glass. Click anywhere on the board to zoom-out and get a better look at the overall map. <br><br> Click the button again to deactivate and reset the zoom level to normal.", 
                              "Click here to activate the hide map function. <br><br> While active, click and drag the cursor down and to the right to produce gray squares that can hide your map from your players. <br><br> Gray squares are movable, and double clicking them removes them.",
