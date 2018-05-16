@@ -4,7 +4,7 @@ var markMapSwitch = 0; var measureMapSwitch = 0; var hideMapSwitch = 0; var zoom
 var backGroundImage;
 var whichMessage = 0; var pointerMove = 18;
 
-var idNo = 0; var hideIdNo = 0;
+var idNo = 0;
 var colorPicker = 0;
 
 var zoom = 100;
@@ -163,7 +163,8 @@ function mouseDownFunctions() {
             fromY = event.pageY;
             
             var hideSquare = document.createElement("IMG");
-            hideSquare.setAttribute("id", "hideSquare" + hideIdNo);
+            hideSquare.setAttribute("id", "hideSquare" + idNo);
+            gamePieces.push(hideSquare.id);
             hideSquare.setAttribute("src", "hideMap.png");
             document.getElementById("iconsGoHere").appendChild(hideSquare);
             hideSquare.style.position = "absolute";
@@ -186,7 +187,7 @@ function mouseDownFunctions() {
                 toY = event.pageY + 3;
             
                 if (hideMapSwitch === 1) {
-                                           document.getElementById("hideSquare" + hideIdNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById("hideSquare" + hideIdNo).style.height = Math.abs(toY - fromY + 30) + "px";
+                                           document.getElementById("hideSquare" + idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById("hideSquare" + idNo).style.height = Math.abs(toY - fromY + 30) + "px";
                                          }
                 
             };
@@ -194,7 +195,7 @@ function mouseDownFunctions() {
             
             hideSquare.onmouseup = function() {
                 
-                hideIdNo++;
+                idNo++;
                 hideMapSwitch++;
                 hideMap();
                 
