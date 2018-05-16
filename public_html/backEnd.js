@@ -142,9 +142,11 @@ function mouseDownFunctions() {
             document.getElementById("iconsGoHere").appendChild(measureDisplay);
             measureDisplay.setAttribute("id", "measureDisplay");
             measureDisplay.style.position = "absolute";
-            measureDisplay.style.width = "30px";
+            measureDisplay.style.width = "40px";
             measureDisplay.style.height = "25px";
-            measureDisplay.style.background = "white";
+            measureDisplay.style.background = "rgba(0, 0, 0, 0.8)";
+            measureDisplay.style.color = "white";
+            measureDisplay.style.borderRadius = "5px";
             measureDisplay.style.fontWeight = "bold";
             
             measureDisplay.onmouseup = function() {
