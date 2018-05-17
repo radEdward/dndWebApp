@@ -22,15 +22,16 @@ body {
 
 
 #welcomeBanner {
-    width: 33%;
-    height: 56%;
-    
     position:fixed;
     bottom: 5%;
     left: 0;
     right: 0;
+    margin:auto;    
     
-    margin:auto;
+    width: 33%;
+    height: 56%;
+    
+
     
     font-family: "Arial";
     text-align: center;
@@ -139,11 +140,10 @@ a {
     display: none;
     position: fixed;
     height: 59px;
-    width: 445px;
+    width: 495px;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 0px 0px 5px 0px;
     z-index: 2;
 }
 #menuBar tr, td {
@@ -161,33 +161,30 @@ a {
     font-weight: bold;
 }
 
-#iconPreview {
-    width: 200px;
-    position: relative;
-    left: 17%;
-    top: 20%;
-}
-
 
 
 #iconMenu {
     position:fixed;
-    top:0;
-    right:0;
-    
-    overflow:auto;
+    bottom: 0px;
+    left:0;
+
+    overflow-x:auto;
+    white-space: nowrap;
     
     display:none;
-    width:337px;
-    height:500px;
+    width: 75%;
+    height: 180px;
     padding:15px;
-    border-radius: 0px 0px 0px 5px;
     
     background-color:rgba(0, 0, 0, 0.7);
     
     z-index: 2;
 }
 #tabChoices {
+    position: fixed;
+    left: 17px;
+    bottom: 160px;
+    
     background-color: lightgray;
     padding: 5px;
     font-size: 12px;
@@ -201,6 +198,10 @@ a {
     border-radius: 5px;
 }
 #sizeIcon {
+    position: fixed;
+    left: 167px;
+    bottom: 160px;
+    
     background-color: lightgray;
     padding: 5px;
     font-size: 12px;

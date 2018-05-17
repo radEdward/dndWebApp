@@ -21,6 +21,7 @@ function mapControl() {
     
     x = event.pageX;
     y = event.pageY;
+    document.getElementById("iconsGoHere").style.cursor = "";
     
     if (placeImageSwitch === 1) {
 
@@ -363,6 +364,7 @@ function showIcons() {
                 
                     imageToSet = this.id;
                     placeImageSwitch = 1;
+                    document.getElementById("iconsGoHere").style.cursor = "-webkit-grabbing";
                 
             };
 
@@ -589,7 +591,8 @@ function switchOperator(e) {
     if (e !== 3) { measureMapSwitch = 0; document.getElementById(buttonIDs[3]).style.background = "lightgray"; }
     if (e !== 4) { markMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; }
     if (e !== 5) { zoomMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; zoom = 100;
-                    document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%";}
+                    document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%"; 
+                    for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] !== "d" ) { document.getElementById(gamePieces[i]).style.zoom = "100%"; } } }
     if (e !== 6) { hideMapSwitch = 0; document.getElementById(buttonIDs[6]).style.background = "lightgray"; }
     
 }
