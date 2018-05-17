@@ -47,7 +47,7 @@ function mapControl() {
             
             for (i = 0; i < gamePieces.length; i++) {
                 
-                document.getElementById(gamePieces[i]).style.zoom = zoom + "%";
+                if (gamePieces[i] !== "d") { document.getElementById(gamePieces[i]).style.zoom = zoom + "%"; }
                 
             }
         
@@ -83,7 +83,7 @@ function iconControl() {
             
     gamePiece.onclick = function() {
         
-            if (removeImageSwitch === 1) { document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id)); }
+            if (removeImageSwitch === 1) { searchIds(this.id); document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id)); }
 
     };
     
@@ -163,7 +163,7 @@ function mouseDownFunctions() {
             fromY = event.pageY;
             
             var hideSquare = document.createElement("IMG");
-            hideSquare.setAttribute("id", "hideSquare" + idNo);
+            hideSquare.setAttribute("id", idNo);
             gamePieces.push(hideSquare.id);
             hideSquare.setAttribute("src", "hideMap.png");
             document.getElementById("iconsGoHere").appendChild(hideSquare);
@@ -177,6 +177,7 @@ function mouseDownFunctions() {
             hideSquare.ondblclick = function() {
                 
                 document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id));
+                searchIds(this.id);
                 
             };
             
@@ -187,7 +188,7 @@ function mouseDownFunctions() {
                 toY = event.pageY + 3;
             
                 if (hideMapSwitch === 1) {
-                                           document.getElementById("hideSquare" + idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById("hideSquare" + idNo).style.height = Math.abs(toY - fromY + 30) + "px";
+                                           document.getElementById(idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById(idNo).style.height = Math.abs(toY - fromY + 30) + "px";
                                          }
                 
             };
@@ -255,6 +256,11 @@ function moveElement(elmnt) {
           document.onmousemove = null;
         }
 
+}
+function searchIds(match) {
+    
+        for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] === match ) { gamePieces[i] = "d"; } }
+    
 }
 
 
@@ -552,7 +558,7 @@ function zoomMap() {
                                    document.getElementById("map").style.zoom = "100%";
                                    document.getElementById("iconsGoHere").style.zoom = "100%";
                                
-                                   for (i = 0; i < gamePieces.length; i++) { document.getElementById(gamePieces[i]).style.zoom = "100%"; }
+                                   for (i = 0; i < gamePieces.length; i++) { if (gamePieces[i] !== "d") { document.getElementById(gamePieces[i]).style.zoom = "100%"; } }
 
     }
     
