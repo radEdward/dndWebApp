@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>ezvtt</title>
+
+    <link rel="shortcut icon" href="tabIcon.png" type="image/x-icon" />
+    <link href="generateBoardLayout.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous">
+
+  </head>
+
+  <body onload = "welcomeGreeting()">
+
+
+
+            <div id = "welcomeBanner">
+                    
+                <img src = "https://image.ibb.co/eVGdTy/home_Screend20.png" alt = "oops..." id = "d20">
+                <div id = "welcomeText"></div>
+                
+            </div>
+      
+      
+
+            <div id = "welcomeBox">
+
+                <input type="file" id="myFile" onchange = "generateBoard(this)">
+                <button id = "loadPage" onclick = "mapSwitch()">Random Test Map</button>
+                <button id = "questions" onclick = "welcome()"> First Time Visiting? </button>
+
+            </div>
+      
+      
+            
+            <div id = "welcomeHelp">
+
+                Welcome to an easy-to-use virtual table top for your role playing game needs. Click anywhere to make this window disappear. <br><br>
+                I made this as a virtual game board to be displayed on a large monitor/television for your players while you run the game. Get started with a random test map by clicking Random Test Map above. If you have a map image you'd like to use, click Choose File and get to the game. <br><br>
+                Click <i class="fas fa-info-circle"></i> on the next page to get a tutorial of the controls<br><br>
+                This was made taking 100 pixels to be equivalent to 5 feet in game, so make sure your map is scaled appropriately. <br><br>
+                The icon images are a part of <a href = "http://immortalnights.com/tokensite/" style = >Devin Night</a>'s free token pack. The test maps are from <a href = "https://rpgcharacters.wordpress.com/maps/commercial-maps/">Dyson's Dodecahedron</a> and from <a href = "https://donjon.bin.sh/">donjon</a>'s random dungeon generator. The wood background is vector art by <a href="https://www.Vecteezy.com/">vecteezy.com</a>  <br><br>
+                Any questions or suggestions can be sent to virtualTableTop@outlook.com
+
+            </div>
+
+
+
+      <div id = "iconsGoHere" onmouseup = "mapControl()" onmousedown = "mouseDownFunctions()" onmousemove = "mouseMoveFunctions()">
+          
+                <img id = "map" src = "">
+          
+      </div>
+            
+            
+            
+            <table id = "menuBar">
+                <tr>
+                    <td> <button id = "generateIconMenu" onclick = "generateIconChoices()"> <i class="fab fa-d-and-d"></i> </button> </td>
+                    <td> <button id = "remove" onclick = "removeIcon()"> <i class="fa fa-trash"></i> </button> </td>
+                    <td> <button id = "rotate" onclick = "rotateIcon()"> <i class="fas fa-sync"></i> </button> </td>
+                    <td> <button id = "measureMap" onclick = "measureMap()"> <i class="fas fa-ruler-combined"></i> </button> </td>
+                    <td> <button id = "markMap" onclick = "markMap()"> <i class="fas fa-exclamation"></i> </button> </td>
+                    <td> <button id = "zoomMap" onclick = "zoomMap()"> <i class="fas fa-search-minus"></i> </button> </td>
+                    <td> <button id = "hideMap" onclick = "hideMap()"> <i class="far fa-eye-slash"></i> </button> </td>
+                    <td> <button id = "info" onclick = "howTo()"> <i class="fas fa-info-circle"></i> </button> </td>
+                </tr>
+            </table>
+
+
+
+            <div id = "iconMenu">
+
+                <table id = "tabs">
+                <tr><td> <select id = "tabChoices" onchange = "showIcons()">
+                        <option> Icon Categories </option>
+                        <option value = "0"> Player Characters </option>
+                        <option value = "1"> More Player Characters </option>
+                        <option value = "2"> Goblins and Kobolds </option>
+                        <option value = "3"> Dwarves </option>
+                        <option value = "4"> Guards and Nobles </option>
+                        <option value = "5"> Dungeon Master Essentials </option>
+                        <option value = "6"> More Dungeon Master Essentials </option>
+                        <option value = "7"> Underdark </option>
+                        <option value = "8"> Orcs and Trolls </option>
+                        <option value = "9"> Werecreatures </option>
+                        <option value = "10"> Familiars </option>
+                        <option value = "11"> Samurai </option>
+                        <option value = "12"> Caverns </option>
+                        <option value = "13"> Campsite </option>
+                        <option value = "14"> Undead </option>
+                        <option value = "15"> Pirates </option>
+                        <option value = "16"> Hairy Orcs/Goblins </option>
+                        </select> </td>
+                    
+                        <td><select id = "sizeIcon"> 
+                            <option>Size:</option>
+                            <option>Normal</option> 
+                            <option>Large</option>
+                            <option>Huge</option>
+                        </select>
+                        
+                </td></tr>
+                </table>
+
+<!--            <table id = "minisGoHere">
+
+
+
+            </table>-->
+
+                <div id = "minisGoHere"></div>
+                
+            </div>
+      
+      
+            
+            <div id = "helpScreen">
+          
+                <i id = "pointer" class="fas fa-arrow-up"></i>
+                
+                <div id = "helpText"> </div>
+                
+                <button id = "nextHelp" onclick = "nextHelp()"> Next > </button>
+          
+            </div>
+
+
+
+            <script src="backEnd.js"></script>
+
+
+
+  </body>
+</html>
