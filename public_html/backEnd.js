@@ -1,4 +1,4 @@
-var iconMenuSwitch = 0;
+var iconMenuSwitch = 0; var mouseDown = 0;
 var placeImageSwitch = 0; var removeImageSwitch = 0; var moveImageSwitch = 0; var rotateImageSwitch = 0;
 var measureMapSwitch = 0; var hideMapSwitch = 0; var zoomMapSwitch = 0; var showMapSwitch = 0;
 var backGroundImage;
@@ -150,54 +150,54 @@ function mouseDownFunctions() {
         
     }
     
-    if (hideMapSwitch === 1) {
-        
-            fromX = event.pageX;
-            fromY = event.pageY;
-            
-            var hideSquare = document.createElement("IMG");
-            hideSquare.setAttribute("id", idNo);
-            gamePieces.push(hideSquare.id);
-            hideSquare.setAttribute("src", "hideMap.png");
-            document.getElementById("iconsGoHere").appendChild(hideSquare);
-            hideSquare.style.position = "absolute";
-            hideSquare.style.width = "100px";
-            hideSquare.style.height = "100px";
-            hideSquare.style.top = fromY - 15 + "px";
-            hideSquare.style.left = fromX - 15 + "px";
-            hideSquare.setAttribute("draggable", false);
-            
-            hideSquare.ondblclick = function() {
-                
-                document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id));
-                searchIds(this.id);
-                
-            };
-            
-            
-            hideSquare.onmousemove = function() {
-                
-                toX = event.pageX + 3;
-                toY = event.pageY + 3;
-            
-                if (hideMapSwitch === 1) {
-                                           document.getElementById(idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById(idNo).style.height = Math.abs(toY - fromY + 30) + "px";
-                                         }
-                
-            };
-
-            
-            hideSquare.onmouseup = function() {
-                
-                idNo++;
-                hideMapSwitch++;
-                hideMap();
-                
-            };
-            
-            moveElement(hideSquare);
-        
-    }
+//    if (hideMapSwitch === 1) {
+//        
+//            fromX = event.pageX;
+//            fromY = event.pageY;
+//            
+//            var hideSquare = document.createElement("IMG");
+//            hideSquare.setAttribute("id", idNo);
+//            gamePieces.push(hideSquare.id);
+//            hideSquare.setAttribute("src", "hideMap.png");
+//            document.getElementById("iconsGoHere").appendChild(hideSquare);
+//            hideSquare.style.position = "absolute";
+//            hideSquare.style.width = "100px";
+//            hideSquare.style.height = "100px";
+//            hideSquare.style.top = fromY - 15 + "px";
+//            hideSquare.style.left = fromX - 15 + "px";
+//            hideSquare.setAttribute("draggable", false);
+//            
+//            hideSquare.ondblclick = function() {
+//                
+//                document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id));
+//                searchIds(this.id);
+//                
+//            };
+//            
+//            
+//            hideSquare.onmousemove = function() {
+//                
+//                toX = event.pageX + 3;
+//                toY = event.pageY + 3;
+//            
+//                if (hideMapSwitch === 1) {
+//                                           document.getElementById(idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById(idNo).style.height = Math.abs(toY - fromY + 30) + "px";
+//                                         }
+//                
+//            };
+//
+//            
+//            hideSquare.onmouseup = function() {
+//                
+//                idNo++;
+//                hideMapSwitch++;
+//                hideMap();
+//                
+//            };
+//            
+//            moveElement(hideSquare);
+//        
+//    }
     
 }
 function mouseMoveFunctions() {
@@ -280,6 +280,42 @@ function mapSwitch() {
 
             document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
             document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
+            
+            var c = document.getElementById("hideLayer");
+            
+            c.width = backGroundImage.width;
+            c.height = backGroundImage.height;
+            
+            var ctx = c.getContext("2d");
+            
+            ctx.beginPath();
+            ctx.rect(0, 0, backGroundImage.width, backGroundImage.height);
+            ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
+            ctx.fill();
+            ctx.globalCompositeOperation='destination-out';
+            
+            document.getElementById("hideLayer").onmousedown = function() {
+                mouseDown = 1;
+            };
+
+            document.getElementById("hideLayer").onmouseup = function() {
+                mouseDown = 0;
+            };
+
+            document.getElementById("hideLayer").onmousemove = function() {
+
+                    var mouseX = event.pageX;
+                    var mouseY = event.pageY;
+
+                    if (mouseDown === 1) {
+                    ctx.beginPath();
+                    ctx.arc(mouseX,mouseY,50,0,2*Math.PI);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+                    ctx.fill();}
+
+            };
 
         };
     
@@ -307,6 +343,9 @@ function generateBoard(map) {
 
             document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
             document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
+            
+            document.getElementById("hideLayer").style.width = backGroundImage.width + "px";
+            document.getElementById("hideLayer").style.height = backGroundImage.height + "px";
 
         };
     
@@ -502,10 +541,10 @@ function hideMap() {
     if (hideMapSwitch === 1) { hideMapSwitch++; }
     
     if (hideMapSwitch === 0) { document.getElementById("hideMap").style.background = "lightsalmon";
-                                   hideMapSwitch++; }
+                                   hideMapSwitch++; document.getElementById("hideLayer").style.pointerEvents = "auto"; }
     
     if (hideMapSwitch === 2) { document.getElementById("hideMap").style.background = "lightgray";
-                                   hideMapSwitch = 0; }
+                                   hideMapSwitch = 0; document.getElementById("hideLayer").style.pointerEvents = "none"; }
     
 }
 
