@@ -150,56 +150,7 @@ function mouseDownFunctions() {
             };
         
     }
-    
-//    if (hideMapSwitch === 1) {
-//        
-//            fromX = event.pageX;
-//            fromY = event.pageY;
-//            
-//            var hideSquare = document.createElement("IMG");
-//            hideSquare.setAttribute("id", idNo);
-//            gamePieces.push(hideSquare.id);
-//            hideSquare.setAttribute("src", "hideMap.png");
-//            document.getElementById("iconsGoHere").appendChild(hideSquare);
-//            hideSquare.style.position = "absolute";
-//            hideSquare.style.width = "100px";
-//            hideSquare.style.height = "100px";
-//            hideSquare.style.top = fromY - 15 + "px";
-//            hideSquare.style.left = fromX - 15 + "px";
-//            hideSquare.setAttribute("draggable", false);
-//            
-//            hideSquare.ondblclick = function() {
-//                
-//                document.getElementById("iconsGoHere").removeChild(document.getElementById(this.id));
-//                searchIds(this.id);
-//                
-//            };
-//            
-//            
-//            hideSquare.onmousemove = function() {
-//                
-//                toX = event.pageX + 3;
-//                toY = event.pageY + 3;
-//            
-//                if (hideMapSwitch === 1) {
-//                                           document.getElementById(idNo).style.width = Math.abs(toX - fromX + 30) + "px"; document.getElementById(idNo).style.height = Math.abs(toY - fromY + 30) + "px";
-//                                         }
-//                
-//            };
-//
-//            
-//            hideSquare.onmouseup = function() {
-//                
-//                idNo++;
-//                hideMapSwitch++;
-//                hideMap();
-//                
-//            };
-//            
-//            moveElement(hideSquare);
-//        
-//    }
-    
+
 }
 function mouseMoveFunctions() {
     
@@ -431,9 +382,9 @@ function nextHelp() {
         
         if (whichMessage === 1) {  }
         
-        if (whichMessage === 6) { document.getElementById("pointer").style.display = "none";  }
+        if (whichMessage === 7) { document.getElementById("pointer").style.display = "none";  }
         
-        if (whichMessage === 7) { howTo(); pointerMove = 18; return; }
+        if (whichMessage === 8) { howTo(); pointerMove = 18; return; }
         
         if (whichMessage > 0) { pointerMove += 55; document.getElementById("pointer").style.left = pointerMove + "px"; }
 
@@ -442,7 +393,8 @@ function nextHelp() {
                              "Click here to activate the rotate function. <br><br> While active, hover the mouse over an icon to rotate it to whatever direction desired. Default is icon facing down.", 
                              "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. Click the box to make it go away. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
                              "Click here to activate the zoom-out function. <br><br> While active, the mouse cursor should change to a magnifying glass. Click anywhere on the board to zoom-out and get a better look at the overall map. <br><br> Click the button again to deactivate and reset the zoom level to normal.", 
-                             "Click here to activate the hide map function. <br><br> While active, click and drag the cursor down and to the right to produce gray squares that can hide your map from your players. <br><br> Gray squares are movable, and double clicking them removes them.",
+                             "Click here to activate the hide map function. <br><br> The map should be blacked out. Click again to reveal the entire map. The next buttons function allows you to \"erase\" away blacked out areas. <br><br> The eye on the button changes when pressed. When there is no slash through the eye, clicking will reveal the map. When there is a slash through the eye, clicking will hide the map.",
+                             "Click here to activate the show map function. <br><br> When pressed, click and drag the mouse over the blacked out layer to reveal parts of the map.", 
                              "Game on! Any questions or concerns can be sent to me at: virtualTableTop@outlook.com"];
 
         document.getElementById("helpText").innerHTML = howToMessages[whichMessage];
@@ -542,20 +494,29 @@ function hideMap() {
     
     if (hideMapSwitch === 1) { hideMapSwitch++; }
     
-    if (hideMapSwitch === 0) { document.getElementById("hideMap").style.background = "lightsalmon";
-                                   hideMapSwitch++; document.getElementById("hideLayer").style.pointerEvents = "auto"; document.getElementById("hideLayer").style.display = "block"; }
+    if (hideMapSwitch === 0) { hideMapSwitch++;
+                                document.getElementById("hideLayer").style.display = "block"; 
+                                document.getElementById("hideMap").innerHTML = "<i class='far fa-eye'></i>";
+    }
     
-    if (hideMapSwitch === 2) { document.getElementById("hideMap").style.background = "lightgray";
-                                   hideMapSwitch = 0; document.getElementById("hideLayer").style.pointerEvents = "none"; }
+    if (hideMapSwitch === 2) { hideMapSwitch = 0;
+                                document.getElementById("hideLayer").style.display = "none";
+                                document.getElementById("hideMap").innerHTML = "<i class='far fa-eye-slash'></i>";}
     
 }
 function showMap() {
     
     switchOperator(6);
     
-    if (document.getElementById("hideLayer").style.display === "block") {
-            document.getElementById("hideLayer").style.display = "none";
-            document.getElementById("hideLayer").style.pointerEvents = "none"; }
+    if (showMapSwitch === 1) { document.getElementById("showMap").style.background = "lightgray";
+                                    document.getElementById("hideLayer").style.pointerEvents = "none";
+                                    showMapSwitch++; }
+    
+    if (showMapSwitch === 0) { document.getElementById("showMap").style.background = "lightsalmon";
+                                    document.getElementById("hideLayer").style.pointerEvents = "auto";
+                                    showMapSwitch++; }
+    
+    if (showMapSwitch === 2) { showMapSwitch = 0; }
     
 }
 
@@ -563,7 +524,7 @@ function showMap() {
 
 function switchOperator(e) {
     
-    var buttonIDs = ["generateIconMenu", "remove", "rotate", "measureMap", "zoomMap", "hideMap"];
+    var buttonIDs = ["generateIconMenu", "remove", "rotate", "measureMap", "zoomMap", "hideMap", "showMap"];
         
     if (e !== 0) { iconMenuSwitch = 0; document.getElementById(buttonIDs[0]).style.background = "lightgray"; placeImageSwitch = 0; document.getElementById("iconMenu").style.display = "none";}
     if (e !== 1) { removeImageSwitch = 0; document.getElementById(buttonIDs[1]).style.background = "lightgray"; }
@@ -572,7 +533,8 @@ function switchOperator(e) {
     if (e !== 4) { zoomMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; zoom = 100;
                     document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%"; 
                     for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] !== "d" ) { document.getElementById(gamePieces[i]).style.zoom = "100%"; } } }
-    if (e !== 5) { hideMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
+    if (e !== 5) {  }
+    if (e !== 6) { showMapSwitch = 0; document.getElementById(buttonIDs[6]).style.background = "lightgray"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
     
 }
 
