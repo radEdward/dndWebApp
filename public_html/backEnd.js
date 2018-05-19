@@ -41,6 +41,7 @@ function mapControl() {
         
             document.getElementById("map").style.zoom = zoom + "%";
             document.getElementById("iconsGoHere").style.zoom = zoom + "%";
+            document.getElementById("hideLayer").style.zoom = zoom + "%";
             
             for (i = 0; i < gamePieces.length; i++) {
                 
@@ -528,6 +529,7 @@ function zoomMap() {
                                    document.getElementById("iconsGoHere").style.cursor = "";
                                    document.getElementById("map").style.zoom = "100%";
                                    document.getElementById("iconsGoHere").style.zoom = "100%";
+                                   document.getElementById("hideLayer").style.zoom = "100%";
                                
                                    for (i = 0; i < gamePieces.length; i++) { if (gamePieces[i] !== "d") { document.getElementById(gamePieces[i]).style.zoom = "100%"; } }
 
@@ -541,10 +543,19 @@ function hideMap() {
     if (hideMapSwitch === 1) { hideMapSwitch++; }
     
     if (hideMapSwitch === 0) { document.getElementById("hideMap").style.background = "lightsalmon";
-                                   hideMapSwitch++; document.getElementById("hideLayer").style.pointerEvents = "auto"; }
+                                   hideMapSwitch++; document.getElementById("hideLayer").style.pointerEvents = "auto"; document.getElementById("hideLayer").style.display = "block"; }
     
     if (hideMapSwitch === 2) { document.getElementById("hideMap").style.background = "lightgray";
                                    hideMapSwitch = 0; document.getElementById("hideLayer").style.pointerEvents = "none"; }
+    
+}
+function showMap() {
+    
+    switchOperator(6);
+    
+    if (document.getElementById("hideLayer").style.display === "block") {
+            document.getElementById("hideLayer").style.display = "none";
+            document.getElementById("hideLayer").style.pointerEvents = "none"; }
     
 }
 
@@ -561,7 +572,7 @@ function switchOperator(e) {
     if (e !== 4) { zoomMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; zoom = 100;
                     document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%"; 
                     for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] !== "d" ) { document.getElementById(gamePieces[i]).style.zoom = "100%"; } } }
-    if (e !== 5) { hideMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; }
+    if (e !== 5) { hideMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
     
 }
 

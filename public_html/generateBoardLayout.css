@@ -16,6 +16,7 @@ body {
 #hideLayer {
     position: absolute;
     pointer-events: none;
+    display: none;
     z-index: 1;
 }
 
@@ -140,7 +141,7 @@ a {
     display: none;
     position: fixed;
     height: 59px;
-    width: 395px;
+    width: 445px;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
