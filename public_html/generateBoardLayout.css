@@ -16,7 +16,6 @@ body {
 #hideLayer {
     position: absolute;
     pointer-events: none;
-    display: none;
     z-index: 1;
 }
 
@@ -141,7 +140,7 @@ a {
     display: none;
     position: fixed;
     height: 59px;
-    width: 445px;
+    width: 395px;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
@@ -161,6 +160,27 @@ a {
     font-family: "Arial";
     font-weight: bold;
 }
+#paintBar {
+    display: none;
+    position: fixed;
+    height: 21px;
+    top: 59px;
+    left: 275px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+}
+#paintBar select {
+    background-color: lightgray;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    
+    font-family: "Arial";
+    font-weight: bold;
+    
+    border-radius: 5px;
+}
 
 
 
@@ -177,7 +197,7 @@ a {
     height: 190px;
     padding:15px;
     
-    background: linear-gradient(to right, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0));
+    background: rgba(0,0,0,0.7);
     
     z-index: 2;
 }
@@ -226,7 +246,7 @@ a {
 
 #helpScreen {
     position: fixed;
-    top: 70px;
+    top: 100px;
     left: 0px;
     display: none;
     

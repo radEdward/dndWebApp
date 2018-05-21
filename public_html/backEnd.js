@@ -1,6 +1,6 @@
 var iconMenuSwitch = 0; var mouseDown = 0;
 var placeImageSwitch = 0; var removeImageSwitch = 0; var moveImageSwitch = 0; var rotateImageSwitch = 0;
-var measureMapSwitch = 0; var hideMapSwitch = 0; var zoomMapSwitch = 0; var showMapSwitch = 0;
+var measureMapSwitch = 0; var artMapSwitch = 0; var zoomMapSwitch = 0; var showMapSwitch = 0;
 var backGroundImage;
 var whichMessage = 0; var pointerMove = 18;
 
@@ -240,12 +240,6 @@ function mapSwitch() {
             
             var ctx = c.getContext("2d");
             
-            ctx.beginPath();
-            ctx.rect(0, 0, backGroundImage.width, backGroundImage.height);
-            ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
-            ctx.fill();
-            ctx.globalCompositeOperation='destination-out';
-            
             document.getElementById("hideLayer").onmousedown = function() {
                 mouseDown = 1;
             };
@@ -256,15 +250,23 @@ function mapSwitch() {
 
             document.getElementById("hideLayer").onmousemove = function() {
 
+                    if ( document.getElementById('artOptions').value === "Erase" ) {
+                        ctx.globalCompositeOperation='destination-out';
+                    }
+                    
+                    if ( document.getElementById('artOptions').value !== "Erase" ) {
+                        ctx.globalCompositeOperation='source-over';
+                    }
+
                     var mouseX = event.pageX;
                     var mouseY = event.pageY;
 
                     if (mouseDown === 1) {
                     ctx.beginPath();
-                    ctx.arc(mouseX,mouseY,50,0,2*Math.PI);
-                    ctx.stroke();
+                    ctx.arc(mouseX,mouseY,parseInt(document.getElementById('thickOptions').value, 10),0,2*Math.PI);
 
-                    ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+                    ctx.fillStyle = document.getElementById('artOptions').value;
+                    ctx.strokeStyle = document.getElementById('artOptions').value;
                     ctx.fill();}
 
             };
@@ -296,8 +298,43 @@ function generateBoard(map) {
             document.getElementById("iconsGoHere").style.width = backGroundImage.width + "px";
             document.getElementById("iconsGoHere").style.height = backGroundImage.height + "px";
             
-            document.getElementById("hideLayer").style.width = backGroundImage.width + "px";
-            document.getElementById("hideLayer").style.height = backGroundImage.height + "px";
+            var c = document.getElementById("hideLayer");
+            
+            c.width = backGroundImage.width;
+            c.height = backGroundImage.height;
+            
+            var ctx = c.getContext("2d");
+            
+            document.getElementById("hideLayer").onmousedown = function() {
+                mouseDown = 1;
+            };
+
+            document.getElementById("hideLayer").onmouseup = function() {
+                mouseDown = 0;
+            };
+
+            document.getElementById("hideLayer").onmousemove = function() {
+
+                    if ( document.getElementById('artOptions').value === "Erase" ) {
+                        ctx.globalCompositeOperation='destination-out';
+                    }
+                    
+                    if ( document.getElementById('artOptions').value !== "Erase" ) {
+                        ctx.globalCompositeOperation='source-over';
+                    }
+
+                    var mouseX = event.pageX;
+                    var mouseY = event.pageY;
+
+                    if (mouseDown === 1) {
+                    ctx.beginPath();
+                    ctx.arc(mouseX,mouseY,parseInt(document.getElementById('thickOptions').value, 10),0,2*Math.PI);
+
+                    ctx.fillStyle = document.getElementById('artOptions').value;
+                    ctx.strokeStyle = document.getElementById('artOptions').value;
+                    ctx.fill();}
+
+            };
 
         };
     
@@ -382,9 +419,9 @@ function nextHelp() {
         
         if (whichMessage === 1) {  }
         
-        if (whichMessage === 7) { document.getElementById("pointer").style.display = "none";  }
+        if (whichMessage === 6) { document.getElementById("pointer").style.display = "none";  }
         
-        if (whichMessage === 8) { howTo(); pointerMove = 18; return; }
+        if (whichMessage === 7) { howTo(); pointerMove = 18; return; }
         
         if (whichMessage > 0) { pointerMove += 55; document.getElementById("pointer").style.left = pointerMove + "px"; }
 
@@ -393,8 +430,7 @@ function nextHelp() {
                              "Click here to activate the rotate function. <br><br> While active, hover the mouse over an icon to rotate it to whatever direction desired. Default is icon facing down.", 
                              "Click here to activate the measure function. <br><br> While active, click on a spot you'd like to measure from and drag to a spot you'd like to measure to. You should see numbers above the mouse tracking your distance. When the mouse is released, measuring will stop and the number will still be displayed. Click the box to make it go away. <br><br> Every 100 pixels is counted as 5 feet. This is how distance is calculated.", 
                              "Click here to activate the zoom-out function. <br><br> While active, the mouse cursor should change to a magnifying glass. Click anywhere on the board to zoom-out and get a better look at the overall map. <br><br> Click the button again to deactivate and reset the zoom level to normal.", 
-                             "Click here to activate the hide map function. <br><br> The map should be blacked out. Click again to reveal the entire map. The next buttons function allows you to \"erase\" away blacked out areas. <br><br> The eye on the button changes when pressed. When there is no slash through the eye, clicking will reveal the map. When there is a slash through the eye, clicking will hide the map.",
-                             "Click here to activate the show map function. <br><br> When pressed, click and drag the mouse over the blacked out layer to reveal parts of the map.", 
+                             "Click here to activate the art function. <br><br> You should see two drop down menus below the button. Select a color and thickness from the menus above, then click and drag to draw on the screen. The erase setting under the color menu will wipe away any markings made. <br><br> Fun fact: You can use this function to hide parts of your map as well as enemy icons.",
                              "Game on! Any questions or concerns can be sent to me at: virtualTableTop@outlook.com"];
 
         document.getElementById("helpText").innerHTML = howToMessages[whichMessage];
@@ -488,35 +524,23 @@ function zoomMap() {
     }
     
 }
-function hideMap() {
+function artMap() {
     
     switchOperator(5);
     
-    if (hideMapSwitch === 1) { hideMapSwitch++; }
+    if (artMapSwitch === 1) { artMapSwitch++; }
     
-    if (hideMapSwitch === 0) { hideMapSwitch++;
-                                document.getElementById("hideLayer").style.display = "block"; 
-                                document.getElementById("hideMap").innerHTML = "<i class='far fa-eye'></i>";
+    if (artMapSwitch === 0) { artMapSwitch++; 
+                                document.getElementById("artMap").style.background = "lightsalmon";
+                                document.getElementById("paintBar").style.display = "block";
+                                document.getElementById("hideLayer").style.pointerEvents = "auto";
     }
     
-    if (hideMapSwitch === 2) { hideMapSwitch = 0;
-                                document.getElementById("hideLayer").style.display = "none";
-                                document.getElementById("hideMap").innerHTML = "<i class='far fa-eye-slash'></i>";}
-    
-}
-function showMap() {
-    
-    switchOperator(6);
-    
-    if (showMapSwitch === 1) { document.getElementById("showMap").style.background = "lightgray";
-                                    document.getElementById("hideLayer").style.pointerEvents = "none";
-                                    showMapSwitch++; }
-    
-    if (showMapSwitch === 0) { document.getElementById("showMap").style.background = "lightsalmon";
-                                    document.getElementById("hideLayer").style.pointerEvents = "auto";
-                                    showMapSwitch++; }
-    
-    if (showMapSwitch === 2) { showMapSwitch = 0; }
+    if (artMapSwitch === 2) { artMapSwitch = 0;
+                                document.getElementById("artMap").style.background = "lightgray";
+                                document.getElementById("paintBar").style.display = "none";
+                                document.getElementById("hideLayer").style.pointerEvents = "none";
+    }
     
 }
 
@@ -524,7 +548,7 @@ function showMap() {
 
 function switchOperator(e) {
     
-    var buttonIDs = ["generateIconMenu", "remove", "rotate", "measureMap", "zoomMap", "hideMap", "showMap"];
+    var buttonIDs = ["generateIconMenu", "remove", "rotate", "measureMap", "zoomMap", "artMap"];
         
     if (e !== 0) { iconMenuSwitch = 0; document.getElementById(buttonIDs[0]).style.background = "lightgray"; placeImageSwitch = 0; document.getElementById("iconMenu").style.display = "none";}
     if (e !== 1) { removeImageSwitch = 0; document.getElementById(buttonIDs[1]).style.background = "lightgray"; }
@@ -533,8 +557,7 @@ function switchOperator(e) {
     if (e !== 4) { zoomMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; zoom = 100;
                     document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%"; 
                     for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] !== "d" ) { document.getElementById(gamePieces[i]).style.zoom = "100%"; } } }
-    if (e !== 5) {  }
-    if (e !== 6) { showMapSwitch = 0; document.getElementById(buttonIDs[6]).style.background = "lightgray"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
+    if (e !== 5) { artMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; document.getElementById("paintBar").style.display = "none"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
     
 }
 
