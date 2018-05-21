@@ -198,7 +198,6 @@ function moveElement(elmnt) {
         }
 
         function stopMovingElement() {
-          placeImageSwitch = 1;
           document.onmouseup = null;
           document.onmousemove = null;
         }
@@ -386,6 +385,7 @@ function showIcons() {
             img.onclick = function() {
                 
                     imageToSet = this.id;
+                    placeImageSwitch = 1;
                     document.getElementById("iconsGoHere").style.cursor = "-webkit-grabbing";
                 
             };
@@ -454,11 +454,11 @@ function generateIconChoices() {
     if (iconMenuSwitch === 0) {
         document.getElementById("iconMenu").style.display = "block";
         document.getElementById("generateIconMenu").style.background = "lightsalmon";
-        iconMenuSwitch++; placeImageSwitch = 1; document.getElementById("sizeIcon").value = "Size:";
+        iconMenuSwitch++; document.getElementById("sizeIcon").value = "Size:";
     }
     
     if (iconMenuSwitch === 2) {
-        iconMenuSwitch = 0; placeImageSwitch = 0;
+        iconMenuSwitch = 0;
     }
     
 }
