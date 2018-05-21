@@ -1,6 +1,6 @@
 var iconMenuSwitch = 0; var mouseDown = 0;
-var placeImageSwitch = 0; var removeImageSwitch = 0; var moveImageSwitch = 0; var rotateImageSwitch = 0;
-var measureMapSwitch = 0; var artMapSwitch = 0; var zoomMapSwitch = 0; var showMapSwitch = 0;
+var placeImageSwitch = 0; var removeImageSwitch = 0; var rotateImageSwitch = 0;
+var measureMapSwitch = 0; var artMapSwitch = 0; var zoomMapSwitch = 0;
 var backGroundImage;
 var whichMessage = 0; var pointerMove = 18;
 
