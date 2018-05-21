@@ -114,13 +114,15 @@ body {
 #welcomeHelp {
     position: absolute;
     margin: auto;
-    top: 200px;
+    top: 0px;
+    bottom: 0px;
     left: 0px;
     right: 0px;
     padding: 10px;
     display: none;
     
     width: 405px;
+    height: 470px;
     
     border-radius: 5px;
     

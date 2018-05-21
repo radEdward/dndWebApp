@@ -11,17 +11,14 @@ var zoom = 100;
 
 var gamePiece; var gamePieces = []; var imageToSet;
 
-var x; var y;
-
 var fromX; var fromY; var toX; var toY;
 
 
 
 function mapControl() {
     
-    x = event.pageX;
-    y = event.pageY;
-    document.getElementById("iconsGoHere").style.cursor = "";
+    fromX = event.pageX;
+    fromY = event.pageY;
     
     if (placeImageSwitch === 1) {
 
@@ -30,8 +27,8 @@ function mapControl() {
             document.getElementById("iconsGoHere").appendChild(gamePiece);
 
             gamePiece.style.position = "absolute";
-            gamePiece.style.left = (x - gamePiece.getAttribute("width")/2) + "px";
-            gamePiece.style.top = (y - gamePiece.getAttribute("height")/2) + "px";
+            gamePiece.style.left = (fromX - gamePiece.getAttribute("width")/2) + "px";
+            gamePiece.style.top = (fromY - gamePiece.getAttribute("height")/2) + "px";
 
     };
     
@@ -386,7 +383,6 @@ function showIcons() {
                 
                     imageToSet = this.id;
                     placeImageSwitch = 1;
-                    document.getElementById("iconsGoHere").style.cursor = "-webkit-grabbing";
                 
             };
 
@@ -543,9 +539,6 @@ function artMap() {
     }
     
 }
-
-
-
 function switchOperator(e) {
     
     var buttonIDs = ["generateIconMenu", "remove", "rotate", "measureMap", "zoomMap", "artMap"];
@@ -554,7 +547,7 @@ function switchOperator(e) {
     if (e !== 1) { removeImageSwitch = 0; document.getElementById(buttonIDs[1]).style.background = "lightgray"; }
     if (e !== 2) { rotateImageSwitch = 0; document.getElementById(buttonIDs[2]).style.background = "lightgray"; rotation = 0; }
     if (e !== 3) { measureMapSwitch = 0; document.getElementById(buttonIDs[3]).style.background = "lightgray"; }
-    if (e !== 4) { zoomMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; zoom = 100;
+    if (e !== 4) { zoomMapSwitch = 0; document.getElementById(buttonIDs[4]).style.background = "lightgray"; zoom = 100; document.getElementById("iconsGoHere").style.cursor = "";
                     document.getElementById("map").style.zoom = "100%"; document.getElementById("iconsGoHere").style.zoom = "100%"; 
                     for (var i = 0; i < gamePieces.length; i++) { if ( gamePieces[i] !== "d" ) { document.getElementById(gamePieces[i]).style.zoom = "100%"; } } }
     if (e !== 5) { artMapSwitch = 0; document.getElementById(buttonIDs[5]).style.background = "lightgray"; document.getElementById("paintBar").style.display = "none"; document.getElementById("hideLayer").style.pointerEvents = "none"; }
