@@ -21,17 +21,41 @@ body {
 
 
 
-#welcomeBanner {
-    position:fixed;
-    bottom: 5%;
+
+#flexDiv {
+    position: fixed;
     left: 0;
     right: 0;
-    margin:auto;    
+    margin: auto;
+    width: 100%;
+    height: 100%;
     
-    width: 33%;
-    height: 56%;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
 
+#welcome1 {
+    width: 200px;
+    
+    display: flex;
+    flex-direction: column;
+}
+#welcome1 button {
+    height: 32px;
+    border-radius: 5px;
+    font-family: "Arial";
+    font-weight: bold;
+    background-color: white;
+}
+
+#welcome2 {
+    width: 300px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
     font-family: "Arial";
     text-align: center;
@@ -40,15 +64,9 @@ body {
     font-weight: bold;
 }
 #d20 {
-    position: relative;
-    top:0;
-    right:0;
-    left:0;
-    
     width: 200px;
     height: 200px;
-    
-    padding: 25px;
+    margin: 25px;
 }
 #welcomeText {
     background-color: white;
@@ -71,42 +89,6 @@ body {
 	border-left: 0;
 	margin-left: -10px;
 	margin-top: -20px;
-}
-
-
-
-#welcomeBox {
-    width: 200px;
-    height: 30%;
-    
-    position:fixed;
-    top: 5%;
-    left: 0;
-    right: 0;
-    
-    margin:auto;
-    text-align: center;
-}
-#loadPage {
-    height: 32px;
-    width: 200px;
-    border-radius: 5px;
-    font-family: "Arial";
-    background-color:white;
-    font-weight: bold;
-    padding: 5px;
-}
-#myFile {
-    width: 200px;
-    background-color: white;
-}
-#questions {
-    height: 32px;
-    width: 200px;
-    border-radius: 5px;
-    font-family: "Arial";
-    background-color:white;
-    font-weight: bold;
 }
 
 
@@ -141,16 +123,11 @@ a {
 #menuBar {
     display: none;
     position: fixed;
-    height: 59px;
-    width: 395px;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 2;
-}
-#menuBar tr, td {
-    width: 52px;
-    height: 52px;
+    padding: 2px;
 }
 #menuBar button {
     height: 50px;
@@ -161,12 +138,13 @@ a {
     font-size: 25px;
     font-family: "Arial";
     font-weight: bold;
+    margin: 2px;
 }
 #paintBar {
     display: none;
     position: fixed;
     height: 21px;
-    top: 59px;
+    top: 58px;
     left: 275px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -176,7 +154,6 @@ a {
     background-color: lightgray;
     font-size: 17px;
     border: none;
-    cursor: pointer;
     
     font-family: "Arial";
     font-weight: bold;
@@ -188,16 +165,17 @@ a {
 
 #iconMenu {
     position:fixed;
-    bottom: 0px;
+    bottom: 0;
     left:0;
 
-    overflow-x:auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     
-    display:none;
+    display: none;
     width: 75%;
-    height: 190px;
-    padding:15px;
+    height: 150px;
+    padding:10px;
     
     background: rgba(0,0,0,0.7);
     
@@ -209,39 +187,14 @@ a {
 #iconMenu img:hover {
     transform: scale(1.5);
 }
-#tabChoices {
-    position: fixed;
-    left: 17px;
-    bottom: 160px;
-    
+#tabs select {
     background-color: lightgray;
-    padding: 5px;
-    font-size: 12px;
-    border: none;
-    cursor: pointer;
-    width: 140px;
-    
+    font-size: 16px;
     font-family: "Arial";
     font-weight: bold;
-    
-    border-radius: 5px;
-}
-#sizeIcon {
-    position: fixed;
-    left: 167px;
-    bottom: 160px;
-    
-    background-color: lightgray;
-    padding: 5px;
-    font-size: 12px;
     border: none;
-    cursor: pointer;
-    width: 70px;
-    
-    font-family: "Arial";
-    font-weight: bold;
-    
     border-radius: 5px;
+    width: 100px;
 }
 
 

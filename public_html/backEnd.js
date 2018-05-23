@@ -213,9 +213,8 @@ function searchIds(match) {
 
 function mapSwitch() {
     
-        document.getElementById("menuBar").style.display = "block";
-        document.getElementById("welcomeBox").style.display = "none";
-        document.getElementById("welcomeBanner").style.display = "none";
+        document.getElementById("menuBar").style.display = "flex";
+        document.getElementById("flexDiv").style.display = "none";
 
         backGroundImage = document.createElement("IMG");
 
@@ -275,9 +274,8 @@ function mapSwitch() {
 }
 function generateBoard(map) {
     
-        document.getElementById("menuBar").style.display = "block";
-        document.getElementById("welcomeBox").style.display = "none";
-        document.getElementById("welcomeBanner").style.display = "none";
+        document.getElementById("menuBar").style.display = "flex";
+        document.getElementById("flexDiv").style.display = "none";
 
         backGroundImage = document.createElement("IMG");
 

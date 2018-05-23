@@ -15,22 +15,20 @@
 
 
 
-            <div id = "welcomeBanner">
-                    
-                <img src = "https://image.ibb.co/eVGdTy/home_Screend20.png" alt = "oops..." id = "d20">
-                <div id = "welcomeText"></div>
-                
-            </div>
-      
-      
-
-            <div id = "welcomeBox">
-
+      <div id="flexDiv">
+          
+            <div id = "welcome1">
                 <input type="file" id="myFile" onchange = "generateBoard(this)">
                 <button id = "loadPage" onclick = "mapSwitch()">Random Test Map</button>
                 <button id = "questions" onclick = "welcome()"> First Time Visiting? </button>
-
             </div>
+      
+            <div id = "welcome2">
+                <img src = "https://image.ibb.co/eVGdTy/home_Screend20.png" alt = "oops..." id = "d20">
+                <div id = "welcomeText"></div>
+            </div>
+          
+      </div>
       
       
             
@@ -56,17 +54,17 @@
             
             
             
-            <table id = "menuBar">
-                <tr>
-                    <td> <button id = "generateIconMenu" onclick = "generateIconChoices()"> <i class="fab fa-d-and-d"></i> </button> </td>
-                    <td> <button id = "remove" onclick = "removeIcon()"> <i class="fa fa-trash"></i> </button> </td>
-                    <td> <button id = "rotate" onclick = "rotateIcon()"> <i class="fas fa-sync"></i> </button> </td>
-                    <td> <button id = "measureMap" onclick = "measureMap()"> <i class="fas fa-ruler-combined"></i> </button> </td>
-                    <td> <button id = "zoomMap" onclick = "zoomMap()"> <i class="fas fa-search-minus"></i> </button> </td>
-                    <td> <button id = "artMap" onclick = "artMap()"> <i class="fas fa-palette"></i> </button> </td>
-                    <td> <button id = "info" onclick = "howTo()"> <i class="fas fa-info-circle"></i> </button> </td>
-                </tr>
-            </table>
+            <div id = "menuBar">
+                
+                    <button id = "generateIconMenu" onclick = "generateIconChoices()"> <i class="fab fa-d-and-d"></i> </button>
+                    <button id = "remove" onclick = "removeIcon()"> <i class="fa fa-trash"></i> </button>
+                    <button id = "rotate" onclick = "rotateIcon()"> <i class="fas fa-sync"></i> </button>
+                    <button id = "measureMap" onclick = "measureMap()"> <i class="fas fa-ruler-combined"></i> </button>
+                    <button id = "zoomMap" onclick = "zoomMap()"> <i class="fas fa-search-minus"></i> </button>
+                    <button id = "artMap" onclick = "artMap()"> <i class="fas fa-palette"></i> </button>
+                    <button id = "info" onclick = "howTo()"> <i class="fas fa-info-circle"></i> </button>
+                
+            </div>
       
             <div id = "paintBar"> 
             
@@ -91,9 +89,9 @@
 
             <div id = "iconMenu">
 
-                <table id = "tabs">
-                <tr><td> <select id = "tabChoices" onchange = "showIcons()">
-                        <option> Icon Categories </option>
+                <div id = "tabs">
+                <select id = "tabChoices" onchange = "showIcons()">
+                        <option> Icons </option>
                         <option value = "0"> Player Characters </option>
                         <option value = "1"> More Player Characters </option>
                         <option value = "2"> Goblins and Kobolds </option>
@@ -111,17 +109,16 @@
                         <option value = "14"> Undead </option>
                         <option value = "15"> Pirates </option>
                         <option value = "16"> Hairy Orcs/Goblins </option>
-                        </select> </td>
+                        </select>
                     
-                        <td><select id = "sizeIcon"> 
+                        <select id = "sizeIcon"> 
                             <option>Size:</option>
                             <option>Normal</option> 
                             <option>Large</option>
                             <option>Huge</option>
                         </select>
-                        
-                </td></tr>
-                </table>
+                    
+                </div>
 
                 <div id = "minisGoHere"></div>
                 
